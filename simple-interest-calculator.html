@@ -48,15 +48,13 @@ function calculate() {
 
   document.getElementById("result").innerHTML = 
     `<strong>Calculation Steps:</strong><br>` +
-    `Principal (P) = Rs ${p}<br>` +
+    `Principal (P) = Rs ${p.toLocaleString('en-IN')}<br>` +
     `Rate (R) = ${r}%<br>` +
-    `Time (T) = ${t} years<br>` +
-    `<br>` +
-    `Step 1: Multiply Principal × Rate × Time = ${p} × ${r} × ${t} = ${(p*r*t).toFixed(2)}<br>` +
-    `Step 2: Divide by 100 = ${(p*r*t/100).toFixed(2)}<br>` +
-    `<br>` +
-    `<strong>Interest = Rs ${interest.toFixed(2)}</strong><br>` +
-    `<strong>Total Amount = Rs ${total.toFixed(2)}</strong>`;
+    `Time (T) = ${t} years<br><br>` +
+    `Step 1: Multiply Principal × Rate × Time = ${p.toLocaleString('en-IN')} × ${r} × ${t} = ${(p*r*t).toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2})}<br>` +
+    `Step 2: Divide by 100 = ${(p*r*t/100).toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2})}<br><br>` +
+    `<strong>Interest = Rs ${interest.toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2})}</strong><br>` +
+    `<strong>Total Amount = Rs ${total.toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2})}</strong>`;
 }
 </script>
 
