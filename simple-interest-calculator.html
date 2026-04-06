@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Interest Calculator</title>
+  <style>
+    body { font-family: Arial; text-align: center; background: #f4f7fb; padding: 40px; }
+    .box { background: white; padding: 25px; border-radius: 12px; max-width: 400px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    input, button { width: 90%; padding: 12px; margin: 10px 0; border-radius: 8px; border: 1px solid #ddd; font-size: 16px; }
+    button { background: #2e7d32; color: white; border: none; cursor: pointer; }
+    button:hover { background: #256428; }
+    .result { margin-top: 20px; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h1>Simple Interest Calculator</h1>
+  <input type="number" id="principal" placeholder="Principal (Rs)">
+  <input type="number" id="rate" placeholder="Rate (%)">
+  <input type="number" id="time" placeholder="Time (years)">
+  <button onclick="calculate()">Calculate</button>
+  <div class="result" id="result"></div>
+</div>
+
+<script>
+function calculate() {
+  let p = parseFloat(document.getElementById("principal").value);
+  let r = parseFloat(document.getElementById("rate").value);
+  let t = parseFloat(document.getElementById("time").value);
+
+  if(isNaN(p)||isNaN(r)||isNaN(t)){
+    document.getElementById("result").innerText="Please fill all fields correctly";
+    return;
+  }
+
+  let interest = (p * r * t) / 100;
+  let total = p + interest;
+  document.getElementById("result").innerHTML = "Interest: Rs " + interest.toFixed(2) + "<br>Total: Rs " + total.toFixed(2);
+}
+</script>
+
+</body>
+</html>
