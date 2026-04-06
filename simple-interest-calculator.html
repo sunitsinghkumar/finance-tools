@@ -8,8 +8,10 @@
 body { font-family: Arial; text-align: center; background: #f4f7fb; padding: 40px; }
 .box { background: white; padding: 25px; border-radius: 12px; max-width: 450px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
 input, button { width: 90%; padding: 12px; margin: 10px 0; border-radius: 8px; border: 1px solid #ddd; font-size: 16px; }
-button { background: #2e7d32; color: white; border: none; cursor: pointer; }
-button:hover { background: #256428; }
+button { color: white; border: none; cursor: pointer; }
+button:hover { opacity: 0.9; }
+#calculate { background: #2e7d32; }
+#clear { background: #d32f2f; }
 .result { margin-top: 20px; font-weight: bold; text-align: left; }
 .explanation { margin-top: 30px; text-align: left; font-size: 15px; color: #333; line-height: 1.5; }
 </style>
@@ -21,7 +23,8 @@ button:hover { background: #256428; }
   <input type="number" id="principal" placeholder="Principal (Rs)">
   <input type="number" id="rate" placeholder="Rate (%)">
   <input type="number" id="time" placeholder="Time (years)">
-  <button onclick="calculate()">Calculate</button>
+  <button id="calculate" onclick="calculate()">Calculate</button>
+  <button id="clear" onclick="clearFields()">Clear</button>
   <div class="result" id="result"></div>
 
   <div class="explanation">
@@ -55,6 +58,13 @@ function calculate() {
     `Step 2: Divide by 100 = ${(p*r*t/100).toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2})}<br><br>` +
     `<strong>Interest = Rs ${interest.toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2})}</strong><br>` +
     `<strong>Total Amount = Rs ${total.toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2})}</strong>`;
+}
+
+function clearFields() {
+  document.getElementById("principal").value = "";
+  document.getElementById("rate").value = "";
+  document.getElementById("time").value = "";
+  document.getElementById("result").innerHTML = "";
 }
 </script>
 
