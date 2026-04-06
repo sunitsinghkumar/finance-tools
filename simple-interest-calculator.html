@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simple Interest Calculator</title>
-  <style>
-    body { font-family: Arial; text-align: center; background: #f4f7fb; padding: 40px; }
-    .box { background: white; padding: 25px; border-radius: 12px; max-width: 400px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    input, button { width: 90%; padding: 12px; margin: 10px 0; border-radius: 8px; border: 1px solid #ddd; font-size: 16px; }
-    button { background: #2e7d32; color: white; border: none; cursor: pointer; }
-    button:hover { background: #256428; }
-    .result { margin-top: 20px; font-weight: bold; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Interest Calculator</title>
+<style>
+body { font-family: Arial; text-align: center; background: #f4f7fb; padding: 40px; }
+.box { background: white; padding: 25px; border-radius: 12px; max-width: 450px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+input, button { width: 90%; padding: 12px; margin: 10px 0; border-radius: 8px; border: 1px solid #ddd; font-size: 16px; }
+button { background: #2e7d32; color: white; border: none; cursor: pointer; }
+button:hover { background: #256428; }
+.result { margin-top: 20px; font-weight: bold; text-align: left; }
+.explanation { margin-top: 30px; text-align: left; font-size: 15px; color: #333; line-height: 1.5; }
+</style>
 </head>
 <body>
 
@@ -22,6 +23,13 @@
   <input type="number" id="time" placeholder="Time (years)">
   <button onclick="calculate()">Calculate</button>
   <div class="result" id="result"></div>
+
+  <div class="explanation">
+    <h2>About Simple Interest</h2>
+    <p>Simple Interest (SI) is a way to calculate the interest earned or paid on a principal amount over a period of time at a fixed rate.</p>
+    <p>The formula used is: <strong>SI = (Principal × Rate × Time) ÷ 100</strong></p>
+    <p>Use this calculator to quickly find out how much interest you will earn or pay on a loan, fixed deposit, or investment over time.</p>
+  </div>
 </div>
 
 <script>
@@ -30,14 +38,25 @@ function calculate() {
   let r = parseFloat(document.getElementById("rate").value);
   let t = parseFloat(document.getElementById("time").value);
 
-  if(isNaN(p)||isNaN(r)||isNaN(t)){
-    document.getElementById("result").innerText="Please fill all fields correctly";
+  if(isNaN(p) || isNaN(r) || isNaN(t)){
+    document.getElementById("result").innerText = "Please fill all fields correctly";
     return;
   }
 
   let interest = (p * r * t) / 100;
   let total = p + interest;
-  document.getElementById("result").innerHTML = "Interest: Rs " + interest.toFixed(2) + "<br>Total: Rs " + total.toFixed(2);
+
+  document.getElementById("result").innerHTML = 
+    `<strong>Calculation Steps:</strong><br>` +
+    `Principal (P) = Rs ${p}<br>` +
+    `Rate (R) = ${r}%<br>` +
+    `Time (T) = ${t} years<br>` +
+    `<br>` +
+    `Step 1: Multiply Principal × Rate × Time = ${p} × ${r} × ${t} = ${(p*r*t).toFixed(2)}<br>` +
+    `Step 2: Divide by 100 = ${(p*r*t/100).toFixed(2)}<br>` +
+    `<br>` +
+    `<strong>Interest = Rs ${interest.toFixed(2)}</strong><br>` +
+    `<strong>Total Amount = Rs ${total.toFixed(2)}</strong>`;
 }
 </script>
 
